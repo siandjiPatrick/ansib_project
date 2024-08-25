@@ -1,9 +1,9 @@
 [raspberry-pi:children]
-raspi3
+#raspi3
 raspi4
 
-[raspi3]
-192.168.179.15 ansible_user=patrick
+#[raspi3]
+#192.168.179.15 ansible_user=patrick
 
 [raspi4]
 192.168.179.10 ansible_user=patrick 
