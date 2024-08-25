@@ -1,4 +1,4 @@
-[raspberry-0pi:children]
+[raspberry-pi:children]
 raspi3
 raspi4
 
@@ -8,7 +8,7 @@ raspi4
 [raspi4]
 192.168.179.10 ansible_user=patrick 
 
-[raspberry-pi:vars]
-apache_package=apache2
-php_package=libapache2-mod-php
+#[raspberry-pi:vars]
+#apache_package=apache2
+#php_package=libapache2-mod-php
 
