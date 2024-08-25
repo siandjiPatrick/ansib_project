@@ -4,22 +4,17 @@
   hosts: all
   gather_facts: true
   become: true
+  #vars:
+    # apache_package: apache2
+    # php_package: libapache2-mod-php
 
   tasks:
-  
-  - name: update repository index
-    apt:
-      update_cache: true
-
-
-  - name: install apache2 package
-    apt:
-      name: apache2
+  - name: install apache and php  package
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
       state: latest
+      update_cache: yes
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
-  - name: add php support for apache
-    apt:
-      name: libapache2-mod-php
-      state: latest
-    when: ansible_distribution in [ "Debian", "Ubuntu"]
