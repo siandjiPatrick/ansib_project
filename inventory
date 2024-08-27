@@ -3,10 +3,10 @@ raspi3
 raspi4
 
 [raspi3]
-192.168.179.15 ansible_user=patrick
+192.168.179.15 
 
 [raspi4]
-192.168.179.10 ansible_user=patrick 
+192.168.179.10 
 
 #[raspberry-pi:vars]
 #apache_package=apache2
