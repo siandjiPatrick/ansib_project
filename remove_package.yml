@@ -1,0 +1,29 @@
+---
+
+- name: install apache on rasppi3 
+  hosts: raspi3
+  gather_facts: true
+  become: true
+
+  tasks:
+  
+  - name: update repository index
+    apt:
+      update_cache: true
+
+
+  - name: remove apache2 package
+    apt:
+      name: apache2
+      state: absent
+      purge: true
+      autoremove: yes
+
+
+  - name: remove php support for apache
+    apt:
+      name: libapache2-mod-php
+      state: absent
+      purge: true
+      autoremove: yes
+      

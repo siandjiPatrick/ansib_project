@@ -1,0 +1,70 @@
+---
+
+- name: install Package on Raspberry-pi 
+  hosts: raspi3
+  gather_facts: true
+  become: true
+  #gather_facts: no
+  #vars:
+  #  apache_package: apache2
+  #  php_package: libapache2-mod-php
+
+  tasks:
+  - name: install apache and php  package
+    tags: 
+      - apache
+      - web
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name : print version and device name
+    tags:
+    - print
+    - debug
+    - device_info
+    debug:
+      msg: "{{ansible_user}}: the device name is {{ device_name}} with the version {{ version }}"
+  
+  - name: install unzip 
+    tags: 
+    - unzip
+    package:
+      name: unzip 
+      state: present 
+      
+  - name: install terraform 
+    tags: terraform
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_arm64.zip
+      dest: /usr/local/bin
+      owner: root 
+      group: root
+      mode: 0755
+      remote_src: true
+
+  - name: copy index.htm file to server
+    tags:
+      - web
+    copy: 
+      src: base.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
+  - name : print workstation variable
+    tags:
+    - print
+    - debug
+    - device_info
+    debug:
+      var: "{{hostvars[]}}: the device name is {{ device_name}} with the version {{ version }}"
+      
+
+  
+    
