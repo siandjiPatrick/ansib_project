@@ -12,3 +12,9 @@ raspi4
 #apache_package=apache2
 #php_package=libapache2-mod-php
 
+
+[workstation]
+192.168.179.4
+
+
+
